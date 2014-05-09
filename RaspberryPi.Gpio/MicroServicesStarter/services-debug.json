@@ -1,0 +1,30 @@
+﻿[
+	{
+		"Id":"Client-Test-Gpio-Debug",
+		"ServiceName":"Services.RaspberryPi.GpIo",
+		"DllPath":"Services.RaspberryPi.GpIo.dll",
+		"ContextType":"Services.RaspberryPi.GpIo.Debug.GpioTest",
+		"ApiKey":null,
+		"Session":null,
+		"Parameters": ["172.16.1.5", 11101]
+	},
+
+	/*{
+		"Id":"Client-Test-Gpio-Debug",
+		"ServiceName":"Services.RaspberryPi.GpIo",
+		"DllPath":"Services.RaspberryPi.GpIo.dll",
+		"ContextType":"Services.RaspberryPi.GpIo.Debug.Gpio4x7SegmentLed",
+		"ApiKey":null,
+		"Session":null,
+		"Parameters": ["10.0.0.7", 11101]
+	},*/
+
+	/*{
+		"Id":"Http-Test-Debug",
+		"ServiceName":"Services.RaspberryPi",
+		"DllPath":"Services.RaspberryPi.dll",
+		"ContextType":"Services.RaspberryPi.PiHttpServer",
+		"ApiKey":null,
+		"Session":null,
+	},*/
+]

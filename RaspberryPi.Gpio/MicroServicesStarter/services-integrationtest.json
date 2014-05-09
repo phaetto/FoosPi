@@ -1,0 +1,49 @@
+﻿[
+	/*{
+		"Id":"Http-Server",
+		"ServiceName":"Services.RaspberryPi",
+		"DllPath":"Services.RaspberryPi.dll",
+		"ContextType":"Services.RaspberryPi.PiHttpServer",
+		"AdminHost":"172.16.1.5",
+		"AdminPort": 11001,
+		"ApiKey":null,
+		"Session":null,
+	},*/
+
+	/*{
+		"Id":"LED-Panel-Refresher",
+		"ServiceName":"Services.RaspberryPi.GpIo",
+		"DllPath":"Services.RaspberryPi.GpIo.dll",
+		"ContextType":"Services.RaspberryPi.GpIo.Gpio4X7SegmentLedContext",
+		"AdminHost":"10.0.0.4",
+		"AdminPort": 11001,
+		"ContextServerHost": "10.0.0.4",
+		"ContextServerPort": 11102,
+		"ApiKey":null,
+		"Session":null,
+	},*/
+
+	{
+		"Id":"Goal-Checker",
+		"ServiceName":"Services.RaspberryPi.GpIo",
+		"DllPath":"Services.RaspberryPi.GpIo.dll",
+		"ContextType":"Services.RaspberryPi.GpIo.GpioGoalCheckBridgeContext",
+		"AdminHost":"10.0.0.4",
+		"AdminPort": 11001,
+		"ApiKey":null,
+		"Session":null,
+	},
+
+	/*{
+		"Id":"LED-Panel-Refresher",
+		"ServiceName":"Services.RaspberryPi.GpIo",
+		"DllPath":"Services.RaspberryPi.GpIo.dll",
+		"ContextType":"Services.RaspberryPi.GpIo.Gpio4X7SegmentLedContext",
+		"AdminHost":"172.16.1.5",
+		"AdminPort": 11001,
+		"ContextServerHost": "172.16.1.5",
+		"ContextServerPort": 11102,
+		"ApiKey":null,
+		"Session":null,
+	},*/
+]
