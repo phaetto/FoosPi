@@ -22,6 +22,12 @@
 /* Interrupt Routines                                                         */
 /******************************************************************************/
 
+#define COMMUNICATION_RESET 0x0
+#define COMMUNICATION_RED 0x0
+#define COMMUNICATION_BLUE 0x1
+#define COMMUNICATION_ZERO 0x2
+#define COMMUNICATION_RESET 0x3
+
 char CommunicationCounter = 0;
 char CommunicationBitsReceived[4] = { 0, 0, 0, 0 };
 char CommunicationActionHeader = 0x0;
