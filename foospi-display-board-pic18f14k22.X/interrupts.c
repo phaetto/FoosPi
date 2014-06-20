@@ -296,7 +296,16 @@ void onIRResultTaken(char* IRBitsTimings, char IRBitsTimingsSizeCounter) {
             break;
 
         case BUTTON_CIRCLE:
+            CommunicationActionHeader = COMMUNICATION_ZERO;
+            CommunicationScoreChangeRequest = 0;
+            T3CONbits.TMR3ON = 0;
+            PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 0;
+            break;
+            
         case BUTTON_POWER:
+            CommunicationActionHeader = COMMUNICATION_RESET;
+            CommunicationScoreChangeRequest = 0;
             T3CONbits.TMR3ON = 0;
             PORTBbits.RB7 = 0;
             PORTBbits.RB6 = 0;
