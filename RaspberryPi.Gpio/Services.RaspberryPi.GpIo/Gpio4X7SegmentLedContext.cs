@@ -39,10 +39,10 @@
             mcuSerial.Sync(26);
 
             // Receive 8bits - command
-            uint command = 0x0;
+            uint commandWithData = 0x0;
             for (var n = 0; n < 8; ++n)
             {
-                command |= (mcuSerial.ClockValueRead() << n);
+                commandWithData |= (mcuSerial.ClockValueRead() << n);
             }
 
             // Read 1-bit ack
@@ -53,7 +53,7 @@
             }
 
             // Parse command
-            OnCommand((FoosPiNumberBoardCommands)command);
+            OnCommand((FoosPiNumberBoardCommands)commandWithData);
             
             var valuesToSend = new[]
                                {
