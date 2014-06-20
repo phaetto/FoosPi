@@ -110,7 +110,7 @@ void high_isr(void)
                 if (CommunicationCounter == 2)
                 {
                     // Blue or red
-                    PORTAbits.RA1 = (CommunicationActionHeader == 1 ? 1 : 0);
+                    PORTAbits.RA1 = (CommunicationActionHeader == COMMUNICATION_BLUE ? COMMUNICATION_BLUE : COMMUNICATION_RED);
                 }
                 else if (CommunicationCounter == 3)
                 {
@@ -242,7 +242,7 @@ void high_isr(void)
             PORTBbits.RB6 = 0;
             Timer3Counter = 0;
             T3CONbits.TMR3ON = 0;
-            CommunicationActionHeader = 0x0;
+            CommunicationActionHeader = COMMUNICATION_RESET;
         }
         
         PIR2bits.TMR3IF = 0;
@@ -277,20 +277,20 @@ void onIRResultTaken(char* IRBitsTimings, char IRBitsTimingsSizeCounter) {
 
         case BUTTON_UP:
             if (PORTBbits.RB6) {
-                CommunicationActionHeader = 0x1;
+                CommunicationActionHeader = COMMUNICATION_BLUE;
                 ++CommunicationScoreChangeRequest;
             } else if (PORTBbits.RB7) {
-                CommunicationActionHeader = 0x0;
+                CommunicationActionHeader = COMMUNICATION_RED;
                 ++CommunicationScoreChangeRequest;
             }
             break;
 
         case BUTTON_DOWN:
             if (PORTBbits.RB6) {
-                CommunicationActionHeader = 0x1;
+                CommunicationActionHeader = COMMUNICATION_BLUE;
                 --CommunicationScoreChangeRequest;
             } else if (PORTBbits.RB7) {
-                CommunicationActionHeader = 0x0;
+                CommunicationActionHeader = COMMUNICATION_RED;
                 --CommunicationScoreChangeRequest;
             }
             break;
