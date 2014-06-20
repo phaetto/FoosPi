@@ -107,10 +107,11 @@ void high_isr(void)
                 // Set RA1 to output
                 TRISAbits.TRISA1 = 0;
 
-                if (CommunicationCounter == 2)
+                if (CommunicationCounter < 3)
                 {
-                    // Blue or red
-                    PORTAbits.RA1 = (CommunicationActionHeader == COMMUNICATION_BLUE ? COMMUNICATION_BLUE : COMMUNICATION_RED);
+                    // 3-bit change number
+                    uint8_t po2 = (1 << CommunicationCounter);
+                    PORTAbits.RA1 = ((CommunicationActionHeader & po2) == po2) ? 1 : 0;
                 }
                 else if (CommunicationCounter == 3)
                 {
@@ -170,6 +171,7 @@ void high_isr(void)
                     BoardNumbers[3] = CommunicationBitsReceived[3];
 
                     CommunicationScoreChangeRequest = 0;
+                    CommunicationActionHeader = COMMUNICATION_RESET;
                 }
 
                 CommunicationHasSynced = false;
