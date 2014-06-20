@@ -77,43 +77,51 @@
             mcuSerial.SendAck();
         }
 
-        private void OnCommand(FoosPiNumberBoardCommands command)
+        private void OnCommand(FoosPiNumberBoardCommands commandAndData)
         {
+            var goalNumberRequested = ((int)commandAndData & 0xF0) >> 4;
+            var command = (FoosPiNumberBoardCommands)((int)commandAndData & 0x07);
+
             if (command == FoosPiNumberBoardCommands.NoCommand)
             {
                 return;
             }
 
-            var goalNumberRequested = ((int)command & 0xF0) >> 4;
-
-            if (HasFlag(command, FoosPiNumberBoardCommands.GoalSignCommand))
+            if (HasFlag(commandAndData, FoosPiNumberBoardCommands.GoalSignCommandBit))
             {
                 goalNumberRequested = -goalNumberRequested;
             }
 
             if (goalNumberRequested != 0)
             {
-                if (HasFlag(command, FoosPiNumberBoardCommands.GoalBlueCommand))
+                if (command == FoosPiNumberBoardCommands.GoalBlueCommand)
                 {
                     BlueScore += goalNumberRequested;
 
-                    workUnitContext.LogLine("Command received: BLUE: 0x{0:x}", command);
+                    workUnitContext.LogLine("Command received: BLUE: 0x{0:x}", commandAndData);
                 }
-                else
+                else if (command == FoosPiNumberBoardCommands.GoalRedCommand)
                 {
                     RedScore += goalNumberRequested;
 
-                    workUnitContext.LogLine("Command received: RED: 0x{0:x}", command);
+                    workUnitContext.LogLine("Command received: RED: 0x{0:x}", commandAndData);
                 }
             }
 
             // Change with Game here
 
-            if (HasFlag(command, FoosPiNumberBoardCommands.ResetGame))
+            if (command == FoosPiNumberBoardCommands.ResetCommand)
             {
                 BlueScore = RedScore = 0;
 
-                workUnitContext.LogLine("Command received: RESET: 0x{0:x}", command);
+                workUnitContext.LogLine("Command received: RESET: 0x{0:x}", commandAndData);
+            }
+
+            if (command == FoosPiNumberBoardCommands.ZeroCommand)
+            {
+                BlueScore = RedScore = 0;
+
+                workUnitContext.LogLine("Command received: ZERO: 0x{0:x}", commandAndData);
             }
         }
 
