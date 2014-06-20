@@ -6,8 +6,10 @@
     public enum FoosPiNumberBoardCommands : byte
     {
         NoCommand = 0x00,
-        GoalSignCommand = 0x08,
-        GoalBlueCommand = 0x04,
-        ResetGame = 0x01,
+        GoalSignCommandBit = 0x08,
+        GoalRedCommand = 0x01,
+        GoalBlueCommand = 0x02,
+        ZeroCommand = 0x03,
+        ResetCommand = 0x04,
     }
 }
