@@ -92,6 +92,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\AddGoal.cs" />
+    <Compile Include="Actions\AddGoalData.cs" />
     <Compile Include="Actions\SetGpioValueData.cs" />
     <Compile Include="Actions\GetGpioValue.cs" />
     <Compile Include="Actions\GetGpioValueData.cs" />
