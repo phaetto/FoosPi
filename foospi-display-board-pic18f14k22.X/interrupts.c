@@ -22,7 +22,7 @@
 /* Interrupt Routines                                                         */
 /******************************************************************************/
 
-#define COMMUNICATION_RESET 0x0
+#define COMMUNICATION_NONE 0x0
 #define COMMUNICATION_RED 0x1
 #define COMMUNICATION_BLUE 0x2
 #define COMMUNICATION_ZERO 0x3
@@ -171,7 +171,7 @@ void high_isr(void)
                     BoardNumbers[3] = CommunicationBitsReceived[3];
 
                     CommunicationScoreChangeRequest = 0;
-                    CommunicationActionHeader = COMMUNICATION_RESET;
+                    CommunicationActionHeader = COMMUNICATION_NONE;
                 }
 
                 CommunicationHasSynced = false;
