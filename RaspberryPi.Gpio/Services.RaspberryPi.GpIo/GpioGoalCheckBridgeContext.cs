@@ -3,8 +3,11 @@
     using System;
     using System.Threading;
     using Chains;
+    using Chains.Play.Web;
     using RaspberryPiDotNet;
+    using Services.Communication.Protocol;
     using Services.Management.Administration.Worker;
+    using Services.RaspberryPi.GpIo.Actions;
     using Services.RaspberryPi.GpIo.Communication;
 
     public sealed class GpioGoalCheckBridgeContext : Chain<GpioGoalCheckBridgeContext>
@@ -59,6 +62,25 @@
             mcuSerial.SendAck();
 
             workUnitContext.LogLine("Got back: Channel: {0:x}, Clock: {1:x}", channel, timer);
+
+            try
+            {
+                using (var connection = new Client("127.0.0.1", 11102).Do(new OpenConnection()))
+                {
+                    connection.Do(
+                        new Send(
+                            new AddGoal(
+                                new AddGoalData
+                                {
+                                    ChannelActivated = (int)channel,
+                                    McuSpeed = (int)timer
+                                })));
+                }
+            }
+            catch (Exception exception)
+            {
+                workUnitContext.LogException(exception);
+            }
         }
 
         public void OnStart()
