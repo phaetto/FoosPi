@@ -13,9 +13,17 @@
 
         private readonly McuSerial mcuSerial = new McuSerial(GPIOPins.V2_GPIO_24, GPIOPins.V2_GPIO_23);
 
-        public int BlueScore = 34;
+        public int BlueScore = 0;
 
-        public int RedScore = 12;
+        public int RedScore = 0;
+
+        public WorkUnitContext WorkUnitContext
+        {
+            get
+            {
+                return workUnitContext;
+            }
+        }
 
         public Gpio4X7SegmentLedContext(WorkUnitContext workUnitContext)
         {
